@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { UserService } from '../../providers/user-service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'page-user',
@@ -8,21 +9,14 @@ import { UserService } from '../../providers/user-service';
 })
 export class UserPage {
 
-  users: any[] = [];
+  users: User[];
 
   constructor(public navCtrl: NavController, public userService: UserService) {
   }
 
   ionViewDidLoad() {
     this.userService.getUsers()
-    .subscribe(
-      (data) => { // Success
-        this.users = data['results'];
-      },
-      (error) =>{
-        console.error(error);
-      }
-    )
+      .subscribe((data: User[]) => this.users = data)
   }
 
 }
