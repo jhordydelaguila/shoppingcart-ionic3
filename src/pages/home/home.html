@@ -7,12 +7,53 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      In Promotion
+    </ion-card-header>
+  </ion-card>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <ion-slides>
+    <ion-slide *ngFor="let item of productsInPromotion | async">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-content>
+            <img [src]="item.image" (click)="goToProductDetailPage(item)">
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+            <ion-card-title>{{item.name}}</ion-card-title>
+            <div class="card-subtitle">S/ {{item.price}}</div>
+
+            <button ion-button icon-start full round (click)="addToCart()">
+              <ion-icon name="cart"></ion-icon>
+              AGREGAR
+            </button>
+          </ion-card-content>
+        </ion-card-header>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-list>
+    <ion-card>
+      <ion-card-header>
+        I'm shoppgin for ...
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card *ngFor="let item of products | async">
+      <img [src]="item.image" (click)="goToProductDetailPage(item)"/>
+      <ion-card-content class="text-center">
+        <p>{{item.description}}</p>
+        <ion-card-title>{{item.name}}</ion-card-title>
+        <div class="card-subtitle">S/ {{item.price}}</div>
+
+        <button ion-button icon-start full round (click)="addToCart()">
+          <ion-icon name="cart"></ion-icon>
+          AGREGAR
+        </button>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
 </ion-content>

@@ -7,6 +7,128 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+
+  <ion-grid style="height:100%;" *ngIf="!cart">
+    <ion-row justify-content-center align-items-center style="height: 100%;">
+      <ion-col col-12 text-center>
+        <button ion-button icon-only>
+          <ion-icon name="cart"></ion-icon>
+        </button>
+        <h3>Your cart is empty</h3>
+        <button ion-button icon-start full round>
+          Search Products
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div *ngIf="cart">
+    <ion-card>
+      <ion-card-header>
+        Items in cart
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card>
+      <ion-item>
+        <h2 item-start>Producto Banana</h2>
+        <button ion-button clear item-end color="danger">
+          <ion-icon name='trash'></ion-icon>
+        </button>
+      </ion-item>
+
+      <ion-card-content no-padding>
+        <ion-item>
+          <ion-thumbnail item-left>
+            <img src="https://via.placeholder.com/300x300">
+          </ion-thumbnail>
+          <h4>Cantidad: 4</h4>
+          <h4>Precio unitario</h4>
+          <h2>S/ 10.00</h2>
+
+          <button ion-button round item-right>
+            <ion-icon name="add"></ion-icon>
+          </button>
+          <label item-right>1</label>
+          <button ion-button round item-right>
+            <ion-icon name="remove"></ion-icon>
+          </button>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-item>
+        <h2 item-start>Producto Banana</h2>
+        <button ion-button clear item-end color="danger">
+          <ion-icon name='trash'></ion-icon>
+        </button>
+      </ion-item>
+
+      <ion-card-content no-padding>
+        <ion-item>
+          <ion-thumbnail item-left>
+            <img src="https://via.placeholder.com/300x300">
+          </ion-thumbnail>
+          <h4>Cantidad: 4</h4>
+          <h4>Precio unitario</h4>
+          <h2>S/ 10.00</h2>
+
+          <button ion-button round item-right>
+            <ion-icon name="add"></ion-icon>
+          </button>
+          <label item-right>1</label>
+          <button ion-button round item-right>
+            <ion-icon name="remove"></ion-icon>
+          </button>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-item>
+        <h2 item-start>Producto Banana</h2>
+        <button ion-button clear item-end>
+          <ion-icon name='trash'></ion-icon>
+        </button>
+      </ion-item>
+
+      <ion-card-content no-padding>
+        <ion-item>
+          <ion-thumbnail item-left>
+            <img src="https://via.placeholder.com/300x300">
+          </ion-thumbnail>
+          <h4>Cantidad: 4</h4>
+          <h4>Precio unitario</h4>
+          <h2>S/ 10.00</h2>
+
+          <button ion-button round item-right>
+            <ion-icon name="add"></ion-icon>
+          </button>
+          <label item-right>1</label>
+          <button ion-button round item-right>
+            <ion-icon name="remove"></ion-icon>
+          </button>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
 
 </ion-content>
+
+<ion-footer *ngIf="cart">
+  <ion-toolbar>
+    <ion-list no-lines inset>
+      <ion-item color="light">
+        <h2 item-left>TOTAL</h2>
+        <h2 item-right>S/ 13.00</h2>
+        <button ion-button round item-right padding>
+          Checkout
+        </button>
+      </ion-item>
+    </ion-list>
+  </ion-toolbar>
+</ion-footer>

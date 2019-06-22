@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{product.name}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goToCart()">
+        <ion-icon name="cart"></ion-icon>
+        <ion-badge>3</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <img [src]="product.image" />
+
+  <ion-card-content>
+    <ion-card-title>
+      {{product.name}}
+    </ion-card-title>
+    <div>
+      {{product.description}}
+    </div>
+  </ion-card-content>
+
+  <ion-item no-lines>
+    <h1>S/ {{product.price}}</h1>
+    <ion-icon name="card" item-end large></ion-icon>
+    <ion-icon name="cash" item-end large></ion-icon>
+  </ion-item>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-list no-lines inset>
+      <ion-item color="light">
+        <button ion-button round item-left>
+          <ion-icon name="add"></ion-icon>
+        </button>
+        <button ion-button item-left>
+          5
+        </button>
+        <button ion-button round item-left>
+          <ion-icon name="remove"></ion-icon>
+        </button>
+        <button ion-button round item-right icon-start padding (click)="addToCart()">
+          <ion-icon name="cart"></ion-icon>
+          Add to Cart
+        </button>
+      </ion-item>
+    </ion-list>
+  </ion-toolbar>
+</ion-footer>
