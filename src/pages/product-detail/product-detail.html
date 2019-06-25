@@ -4,7 +4,7 @@
     <ion-buttons end>
       <button ion-button icon-only (click)="goToCart()">
         <ion-icon name="cart"></ion-icon>
-        <ion-badge>3</ion-badge>
+        <ion-badge>{{countCartItems}}</ion-badge>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -29,20 +29,20 @@
   </ion-item>
 </ion-content>
 
-<ion-footer>
+<ion-footer no-border>
   <ion-toolbar>
     <ion-list no-lines inset>
       <ion-item color="light">
-        <button ion-button round item-left>
-          <ion-icon name="add"></ion-icon>
-        </button>
-        <button ion-button item-left>
-          5
-        </button>
-        <button ion-button round item-left>
+        <button ion-button round item-left (click)="decreaseQty()">
           <ion-icon name="remove"></ion-icon>
         </button>
-        <button ion-button round item-right icon-start padding (click)="addToCart()">
+        <button ion-button item-left>
+          {{qty}}
+        </button>
+        <button ion-button round item-left (click)="incrementQty()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+        <button ion-button round item-right icon-start padding (click)="addToCart(product)">
           <ion-icon name="cart"></ion-icon>
           Add to Cart
         </button>

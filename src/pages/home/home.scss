@@ -1,5 +1,4 @@
 page-home {
-
 }
 
 .card-subtitle {
@@ -9,10 +8,21 @@ page-home {
   color: #222;
 }
 
-.text-center{
+.text-center {
   text-align: center;
 }
 
-ion-slides{
+ion-slides {
   height: auto;
+}
+
+.customToastClass {
+  > div {
+    bottom: 55px !important;
+    text-align: center !important;
+  }
+}
+
+.toast-md .toast-message {
+  padding: 10px 16px 10px;
 }

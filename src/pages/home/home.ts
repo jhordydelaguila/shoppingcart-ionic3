@@ -3,6 +3,7 @@ import { NavController, ToastController } from 'ionic-angular';
 
 import { Product } from '../../models/product';
 import { ProductService } from '../../providers/product-service';
+import { CartService } from '../../providers/cart-service';
 
 import { Observable } from 'rxjs/Rx';
 import { ProductDetailPage } from '../product-detail/product-detail';
@@ -19,7 +20,8 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     public toastCtrl: ToastController,
-    public productService: ProductService
+    public productService: ProductService,
+    public cartService: CartService
   ) {
   }
 
@@ -40,14 +42,18 @@ export class HomePage {
     this.navCtrl.push(ProductDetailPage, { item });
   }
 
-
-  addToCart() {
-    const toast = this.toastCtrl.create({
-      message: 'Its item has been added to cart.',
-      duration: 2000,
-      position: 'bottom'
+  addToCart(item: Product) {
+    let qty = 1;
+    this.cartService.addCartItem(item, qty).then(() => {
+      const toast = this.toastCtrl.create({
+        message: 'This item has been added to cart',
+        duration: 2000,
+        position: 'bottom',
+        cssClass: 'customToastClass',
+        dismissOnPageChange: true,
+      });
+      toast.present();
     });
-    toast.present();
   }
 
 }

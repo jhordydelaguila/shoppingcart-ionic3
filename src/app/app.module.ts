@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -17,6 +18,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { UserService } from '../providers/user-service';
 import { ProductService } from '../providers/product-service';
+import { CartService } from '../providers/cart-service';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { ProductService } from '../providers/product-service';
   imports: [
     BrowserModule,
     HttpClientModule,
+    IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
@@ -51,6 +54,7 @@ import { ProductService } from '../providers/product-service';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     UserService,
     ProductService,
+    CartService,
   ]
 })
 export class AppModule { }
