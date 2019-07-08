@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Items in cart</ion-title>
+    <ion-buttons end *ngIf="cart.cartItems.length">
+      <button ion-button icon-only (click)="removeAllCart()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid style="height:100%;" *ngIf="!cart.cartItems.length">
+    <ion-row justify-content-center align-items-center style="height: 100%;">
+      <ion-col col-12 text-center>
+        <button ion-button icon-only>
+          <ion-icon name="cart"></ion-icon>
+        </button>
+        <h3>Your cart is empty</h3>
+        <button ion-button icon-start round (click)="goToHome()">
+          Search Products
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list *ngIf="cart.cartItems.length">
+    <ion-card *ngFor="let item of cart.cartItems">
+      <ion-item>
+        <h2 item-start>{{item.product.name}}</h2>
+        <button ion-button clear item-end color="danger" (click)="removeItemOfCart(i)">
+          <ion-icon name='close'></ion-icon>
+        </button>
+      </ion-item>
+
+      <ion-card-content no-padding>
+        <ion-item>
+          <ion-thumbnail item-left>
+            <img src="https://via.placeholder.com/300x300" (click)="gotToProductDetail(item.product)">
+          </ion-thumbnail>
+          <h5>Precio</h5>
+          <h3>S/ {{item.product.price}}</h3>
+          <h5>Subtotal</h5>
+          <h3>S/ {{item.subtotal()}}</h3>
+
+          <button ion-button round item-right (click)="decreaseQty(item)">
+            <ion-icon name="remove"></ion-icon>
+          </button>
+          <label item-right>{{item.qty}}</label>
+          <button ion-button round item-right (click)="incrementQty(item)">
+            <ion-icon name="add"></ion-icon>
+          </button>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer no-border>
+  <ion-toolbar *ngIf="cart.cartItems.length">
+    <ion-list no-lines inset>
+      <ion-item color="light">
+        <h2 item-left><b>TOTAL</b></h2>
+        <h2 item-right><b>S/ {{cart.total()}}</b></h2>
+        <button ion-button round item-right padding>
+          Checkout
+        </button>
+      </ion-item>
+    </ion-list>
+  </ion-toolbar>
+</ion-footer>

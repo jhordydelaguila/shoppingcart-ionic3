@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Search</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-searchbar (ionInput)="getItems($event)" placeholder="Search products"></ion-searchbar>
+
+  <ion-row>
+    <ion-col col-6 *ngFor="let item of products">
+      <ion-card (click)="goToProductDetailPage(item)">
+        <img [src]="item.image"/>
+        <ion-item>
+          <h2>{{item.name}}</h2>
+          <h2>S/ {{item.price}}</h2>
+        </ion-item>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>
