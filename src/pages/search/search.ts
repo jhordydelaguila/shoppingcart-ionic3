@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the SearchPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Product } from '../../models/product';
+import { ProductService } from '../../providers/product-service';
+import { ProductDetailPage } from '../product-detail/product-detail';
 
 @IonicPage()
 @Component({
@@ -15,11 +11,45 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SearchPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  products: any[] = [];
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public productService: ProductService
+    ) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SearchPage');
+    this.initializeItems();
+  }
+
+  doRefresh(refresher) {
+    setTimeout(() => {
+      refresher.complete();
+    }, 2000);
+  }
+
+  initializeItems() {
+    this.productService.getProducts().subscribe((item: Product[]) => {
+      this.products = item;
+    });
+  }
+
+  getItems(ev) {
+    this.initializeItems();
+
+    let val = ev.target.value;
+
+    if (val && val.trim() != '') {
+      this.products = this.products.filter(item => {
+        return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+  }
+
+  goToProductDetailPage(item) {
+    this.navCtrl.push(ProductDetailPage, { item });
   }
 
 }
